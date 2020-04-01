@@ -12,6 +12,7 @@ fastapi = "*"
 uvicorn = "*"
 starlette = "*"
 gunicorn = "*"
+pymysql = "*"
 
 [requires]
 python_version = "3.7"
