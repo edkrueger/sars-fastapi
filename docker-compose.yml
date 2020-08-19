@@ -25,6 +25,5 @@ services:
         environment: 
             - DB_CONN=mysql+pymysql://root:password@mysql:3306/database
         command: python load.py
-        # command: ls app/
         depends_on: 
             - mysql
