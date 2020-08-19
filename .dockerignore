@@ -4,5 +4,3 @@ README.md
 *.pyo
 *.pyd
 __pycache__
-sars_2003_complete_dataset_clean.csv
-load.py

@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+    mysql:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: database
+    app:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        environment: 
+            - PORT=8000
+            - DB_CONN=mysql+pymysql://root:password@mysql:3306/database
+        ports:
+            - "80:8000"
+        depends_on: 
+            - mysql
+            - loader
+    loader:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        environment: 
+            - DB_CONN=mysql+pymysql://root:password@mysql:3306/database
+        command: python load.py
+        # command: ls app/
+        depends_on: 
+            - mysql
