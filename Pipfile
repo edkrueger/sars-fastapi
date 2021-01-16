@@ -19,6 +19,7 @@ gunicorn = "*"
 pymysql = "*"
 uvloop = "*"
 httptools = "*"
+apscheduler = "*"
 
 [requires]
 python_version = "3.8"
