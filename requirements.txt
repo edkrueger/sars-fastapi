@@ -10,10 +10,13 @@
 # `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
+apscheduler
 fastapi
 gunicorn
+httptools
 pydantic
 pymysql
 sqlalchemy
 starlette
 uvicorn
+uvloop
