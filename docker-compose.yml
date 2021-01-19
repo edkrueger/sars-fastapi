@@ -6,13 +6,16 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: password
             MYSQL_DATABASE: database
+            MYSQL_TCP_PORT: 53306
+        ports:
+            - "53306:53306"
     app:
         build:
             context: ./
             dockerfile: Dockerfile
         environment: 
             - PORT=8000
-            - DB_CONN=mysql+pymysql://root:password@mysql:3306/database
+            - DB_CONN=mysql+pymysql://root:password@mysql:53306/database
         ports:
             - "80:8000"
         depends_on: 
@@ -23,7 +26,7 @@ services:
             context: ./
             dockerfile: Dockerfile
         environment: 
-            - DB_CONN=mysql+pymysql://root:password@mysql:3306/database
+            - DB_CONN=mysql+pymysql://root:password@mysql:53306/database
         command: python load.py
         depends_on: 
             - mysql
