@@ -17,7 +17,7 @@ services:
             - PORT=8000
             - DB_CONN=mysql+pymysql://root:password@mysql:53306/database
         ports:
-            - "8000:8000"
+            - "80:8000"
         depends_on: 
             - mysql
             - loader
