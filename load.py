@@ -23,6 +23,6 @@ if db.query(models.Record).count() == 0:
                 recoveries=row["recoveries"],
             )
             db.add(db_record)
-            db.commit()
+        db.commit()
 
 db.close()
