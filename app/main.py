@@ -37,5 +37,5 @@ def main():
 
 @app.get("/records/", response_model=List[schemas.Record])
 def show_records(db: Session = Depends(get_db)):
-    records = db.query(models.Record).limit(300).all()
+    records = db.query(models.Record).all()
     return records
