@@ -10,18 +10,18 @@ repos:
         - id: check-added-large-files
     - repo: local
       hooks:
-        # - id: pylint-app
-        #   name: pylint-app
-        #   entry: pipenv run pylint app/
-        #   language: system
-        #   always_run: true
-        #   pass_filenames: false
-        # - id: pylint-load
-        #   name: pylint-load
-        #   entry: pipenv run pylint load.py
-        #   language: system
-        #   always_run: true
-        #   pass_filenames: false
+        - id: pylint-app
+          name: pylint-app
+          entry: pipenv run pylint app/
+          language: system
+          always_run: true
+          pass_filenames: false
+        - id: pylint-load
+          name: pylint-load
+          entry: pipenv run pylint load.py
+          language: system
+          always_run: true
+          pass_filenames: false
         - id: pipenv to requirements
           name: pipenv to requirements
           entry: pipenv run pipenv_to_requirements

@@ -1,3 +1,9 @@
+"""Database Models."""
+
+# basic sqlalchemy classes a auto-documenting
+# sqlalchemy classes don't need methods
+# pylint: disable=missing-class-docstring, too-few-public-methods
+
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.types import Date
 from .database import Base

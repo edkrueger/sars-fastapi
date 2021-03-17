@@ -1,3 +1,8 @@
+"""The App."""
+
+# sqlalchemy Sessions don't play well with pylint
+# pylint: disable=no-member
+
 import logging
 from typing import List
 
@@ -7,15 +12,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from starlette.responses import RedirectResponse
 
+from . import models, schemas
+from .database import SessionLocal, engine
+
 gunicorn_logger = logging.getLogger("gunicorn.error")
 logger.handlers = gunicorn_logger.handlers
 if __name__ != "main":
     logger.setLevel(gunicorn_logger.level)
 else:
     logger.setLevel(logging.DEBUG)
-
-from . import models, schemas
-from .database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -30,27 +35,25 @@ app.add_middleware(
     allow_credentials=True,
 )
 
-# Dependency
-def get_db():
+
+def get_database():
+    """A dependency for FastAPI routes."""
     try:
-        db = SessionLocal()
-        yield db
+        database = SessionLocal()
+        yield database
     finally:
-        db.close()
-
-
-@app.on_event("startup")
-async def startup_event():
-    logger.info("Startup event !")
+        database.close()
 
 
 @app.get("/")
 def main():
+    """Redirects to the Swagger Docs."""
     return RedirectResponse(url="/docs/")
 
 
 @app.get("/records/", response_model=List[schemas.Record])
-def show_records(db: Session = Depends(get_db)):
-    records = db.query(models.Record).limit(300).all()
+def show_records(database: Session = Depends(get_database)):
+    """Shows all records."""
+    records = database.query(models.Record).all()
     logger.info("Retrieved Records")
     return records
