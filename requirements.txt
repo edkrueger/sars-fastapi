@@ -12,8 +12,10 @@
 
 fastapi
 gunicorn
+httptools
 pydantic
 pymysql
 sqlalchemy
 starlette
 uvicorn
+uvloop
