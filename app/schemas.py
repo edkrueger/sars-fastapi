@@ -19,3 +19,14 @@ class Record(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class RecordNew(BaseModel):
+    date: date
+    country: str
+    cases: int
+    deaths: int
+    recoveries: int
+
+    class Config:
+        orm_mode = True
