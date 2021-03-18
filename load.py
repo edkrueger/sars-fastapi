@@ -1,3 +1,8 @@
+"""Load the data into the database."""
+
+# sqlalchemy Sessions don't play well with pylint
+# pylint: disable=no-member
+
 import csv
 import datetime
 
